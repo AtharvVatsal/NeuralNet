@@ -17,10 +17,10 @@ import math
 st.set_page_config(
     page_title="Neural Net of Affection 🌸🧠💖",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="expanded"
 )
 
-# --- Stunning Visual Theme ---
+# --- Enhanced Visual Theme ---
 st.markdown("""
 <style>
     /* Import beautiful fonts */
@@ -115,7 +115,7 @@ st.markdown("""
         to { text-shadow: 0 0 20px rgba(255, 182, 193, 0.6), 0 0 30px rgba(255, 105, 180, 0.3); }
     }
     
-    /* Gorgeous sidebar styling */
+    /* Enhanced sidebar styling */
     .css-1d391kg {
         background: linear-gradient(180deg, rgba(26, 26, 46, 0.95) 0%, rgba(48, 43, 99, 0.95) 100%);
         backdrop-filter: blur(20px);
@@ -126,20 +126,62 @@ st.markdown("""
     
     /* Beautiful control panels */
     .control-panel {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.08);
         backdrop-filter: blur(15px);
         border-radius: 20px;
-        border: 1px solid rgba(255, 182, 193, 0.2);
-        padding: 1.5rem;
-        margin: 1rem 0;
-        box-shadow: 0 8px 32px rgba(255, 105, 180, 0.1);
+        border: 2px solid rgba(255, 182, 193, 0.3);
+        padding: 1.8rem;
+        margin: 1.5rem 0;
+        box-shadow: 0 8px 32px rgba(255, 105, 180, 0.15);
         transition: all 0.3s ease;
     }
     
     .control-panel:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 40px rgba(255, 105, 180, 0.2);
-        border-color: rgba(255, 105, 180, 0.4);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 45px rgba(255, 105, 180, 0.25);
+        border-color: rgba(255, 105, 180, 0.5);
+    }
+    
+    .control-panel h3 {
+        color: #ff69b4;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+    }
+    
+    /* Enhanced theme selector */
+    .theme-selector {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 1rem;
+        margin: 1rem 0;
+        border: 1px solid rgba(255, 182, 193, 0.2);
+    }
+    
+    .theme-preview {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+        margin: 0.3rem 0;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .theme-preview:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(5px);
+    }
+    
+    .theme-color-dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-right: 10px;
+        border: 2px solid white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
     
     /* Magical buttons */
@@ -155,21 +197,7 @@ st.markdown("""
         box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
         position: relative;
         overflow: hidden;
-    }
-    
-    .stButton > button::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
         width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: left 0.5s;
-    }
-    
-    .stButton > button:hover::before {
-        left: 100%;
     }
     
     .stButton > button:hover {
@@ -178,42 +206,25 @@ st.markdown("""
         background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
     }
     
-    /* Dreamy metric cards */
+    /* Enhanced metric cards */
     .metric-card {
-        background: linear-gradient(135deg, rgba(255, 182, 193, 0.1) 0%, rgba(255, 105, 180, 0.1) 100%);
-        backdrop-filter: blur(10px);
+        background: linear-gradient(135deg, rgba(255, 182, 193, 0.15) 0%, rgba(255, 105, 180, 0.15) 100%);
+        backdrop-filter: blur(15px);
         padding: 2rem 1rem;
         border-radius: 20px;
-        border: 2px solid rgba(255, 105, 180, 0.2);
+        border: 2px solid rgba(255, 105, 180, 0.3);
         text-align: center;
         margin: 1rem 0;
         transition: all 0.3s ease;
-        box-shadow: 0 8px 25px rgba(255, 105, 180, 0.1);
+        box-shadow: 0 8px 25px rgba(255, 105, 180, 0.15);
         position: relative;
         overflow: hidden;
     }
     
-    .metric-card::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
-        transform: rotate(45deg);
-        animation: shimmer 3s infinite;
-    }
-    
-    @keyframes shimmer {
-        0% { transform: translateX(-100%) rotate(45deg); }
-        100% { transform: translateX(100%) rotate(45deg); }
-    }
-    
     .metric-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 15px 40px rgba(255, 105, 180, 0.25);
-        border-color: rgba(255, 105, 180, 0.5);
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
+        border-color: rgba(255, 105, 180, 0.6);
     }
     
     .metric-card h4 {
@@ -230,42 +241,27 @@ st.markdown("""
         font-size: 2.5rem;
         font-weight: 700;
         margin: 0;
-        text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+        text-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
     }
     
     /* Heartwarming message box */
     .wholesome-message {
-        background: linear-gradient(135deg, rgba(255, 182, 193, 0.15) 0%, rgba(255, 105, 180, 0.15) 100%);
+        background: linear-gradient(135deg, rgba(255, 182, 193, 0.2) 0%, rgba(255, 105, 180, 0.2) 100%);
         backdrop-filter: blur(15px);
         border-radius: 25px;
-        border: 2px solid rgba(255, 182, 193, 0.3);
+        border: 2px solid rgba(255, 182, 193, 0.4);
         padding: 2rem;
         margin: 2rem 0;
         text-align: center;
-        box-shadow: 0 10px 35px rgba(255, 105, 180, 0.15);
+        box-shadow: 0 10px 35px rgba(255, 105, 180, 0.2);
         position: relative;
         overflow: hidden;
         animation: gentlePulse 4s ease-in-out infinite;
     }
     
     @keyframes gentlePulse {
-        0%, 100% { transform: scale(1); box-shadow: 0 10px 35px rgba(255, 105, 180, 0.15); }
-        50% { transform: scale(1.02); box-shadow: 0 15px 45px rgba(255, 105, 180, 0.25); }
-    }
-    
-    .wholesome-message::before {
-        content: '💖';
-        position: absolute;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 2rem;
-        animation: floatingHeart 2s ease-in-out infinite;
-    }
-    
-    @keyframes floatingHeart {
-        0%, 100% { transform: translateX(-50%) translateY(0px); }
-        50% { transform: translateX(-50%) translateY(-5px); }
+        0%, 100% { transform: scale(1); box-shadow: 0 10px 35px rgba(255, 105, 180, 0.2); }
+        50% { transform: scale(1.02); box-shadow: 0 15px 45px rgba(255, 105, 180, 0.3); }
     }
     
     .wholesome-message h3 {
@@ -285,10 +281,10 @@ st.markdown("""
     
     /* Beautiful info sections */
     .info-section {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(10px);
         border-radius: 15px;
-        border: 1px solid rgba(255, 182, 193, 0.15);
+        border: 1px solid rgba(255, 182, 193, 0.2);
         padding: 1.5rem;
         margin: 1rem 0;
         transition: all 0.3s ease;
@@ -296,42 +292,8 @@ st.markdown("""
     
     .info-section:hover {
         transform: translateY(-2px);
-        border-color: rgba(255, 182, 193, 0.3);
-        box-shadow: 0 8px 25px rgba(255, 105, 180, 0.1);
-    }
-    
-    .info-section h3 {
-        color: #ff69b4;
-        font-size: 1.2rem;
-        margin-bottom: 0.8rem;
-        font-weight: 600;
-    }
-    
-    .info-section p {
-        color: #e0e0e0;
-        line-height: 1.5;
-        margin: 0;
-    }
-    
-    /* Gorgeous footer */
-    .magical-footer {
-        text-align: center;
-        margin-top: 3rem;
-        padding: 2rem;
-        background: linear-gradient(135deg, rgba(255, 105, 180, 0.1) 0%, rgba(199, 21, 133, 0.1) 100%);
-        border-radius: 25px;
-        border: 1px solid rgba(255, 105, 180, 0.2);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.1);
-    }
-    
-    .magical-footer em {
-        color: #ffb6c1;
-        font-size: 1.3rem;
-        font-weight: 400;
-        text-shadow: 0 0 15px rgba(255, 182, 193, 0.4);
-        display: block;
-        animation: gentleGlow 3s ease-in-out infinite alternate;
+        border-color: rgba(255, 182, 193, 0.4);
+        box-shadow: 0 8px 25px rgba(255, 105, 180, 0.15);
     }
     
     /* Custom scrollbar */
@@ -349,21 +311,6 @@ st.markdown("""
         border-radius: 10px;
     }
     
-    ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(180deg, #ff1493, #c7155b);
-    }
-    
-    /* Remove default streamlit styling */
-    .stSelectbox > div > div {
-        background-color: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 182, 193, 0.3);
-        border-radius: 10px;
-    }
-    
-    .stSlider > div > div {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-    
     /* Hide streamlit elements */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
@@ -374,76 +321,140 @@ st.markdown("""
 # --- Enhanced Data Structure ---
 class NeuralNetworkData:
     def __init__(self):
+        self.themes = {
+            "🌸 Cherry Blossom Dreams": {
+                "description": "Soft pink petals of pure affection",
+                "input_color": "rgba(255, 182, 193, 0.9)",
+                "hidden_color": "rgba(255, 105, 180, 1.0)",
+                "output_color": "rgba(255, 20, 147, 1.2)",
+                "edge_color": "rgba(255, 240, 245, 0.7)",
+                "glow": "rgba(255, 105, 180, 0.3)",
+                "dot_color": "#ffb6c1"
+            },
+            "🌙 Moonlit Romance": {
+                "description": "Silvery whispers under starlight",
+                "input_color": "rgba(221, 160, 221, 0.9)",
+                "hidden_color": "rgba(147, 112, 219, 1.0)",
+                "output_color": "rgba(138, 43, 226, 1.2)",
+                "edge_color": "rgba(230, 230, 250, 0.7)",
+                "glow": "rgba(147, 112, 219, 0.3)",
+                "dot_color": "#dda0dd"
+            },
+            "🌊 Ocean Serenity": {
+                "description": "Gentle waves of deep connection",
+                "input_color": "rgba(173, 216, 230, 0.9)",
+                "hidden_color": "rgba(100, 149, 237, 1.0)",
+                "output_color": "rgba(65, 105, 225, 1.2)",
+                "edge_color": "rgba(240, 248, 255, 0.7)",
+                "glow": "rgba(100, 149, 237, 0.3)",
+                "dot_color": "#add8e6"
+            },
+            "🌈 Rainbow Hearts": {
+                "description": "Vibrant celebration of love",
+                "input_color": "rgba(255, 99, 132, 0.9)",
+                "hidden_color": "rgba(54, 162, 235, 1.0)",
+                "output_color": "rgba(255, 206, 86, 1.2)",
+                "edge_color": "rgba(255, 255, 255, 0.7)",
+                "glow": "rgba(255, 99, 132, 0.3)",
+                "dot_color": "#ff6384"
+            },
+            "🌅 Golden Sunrise": {
+                "description": "Warm dawn of new beginnings",
+                "input_color": "rgba(255, 154, 158, 0.9)",
+                "hidden_color": "rgba(250, 208, 196, 1.0)",
+                "output_color": "rgba(255, 206, 84, 1.2)",
+                "edge_color": "rgba(255, 183, 197, 0.7)",
+                "glow": "rgba(255, 154, 158, 0.3)",
+                "dot_color": "#ff9a9e"
+            },
+            "💎 Crystal Clarity": {
+                "description": "Pure, crystalline love essence",
+                "input_color": "rgba(200, 200, 255, 0.9)",
+                "hidden_color": "rgba(150, 150, 255, 1.0)",
+                "output_color": "rgba(100, 100, 255, 1.2)",
+                "edge_color": "rgba(230, 230, 255, 0.7)",
+                "glow": "rgba(150, 150, 255, 0.3)",
+                "dot_color": "#c8c8ff"
+            }
+        }
+        
         self.input_categories = {
             "💫 Magical Moments": [
-                "Her radiant morning smile ☀️😊",
-                "The way her eyes sparkle with joy ✨👀",
-                "Her gentle sleepy whispers 🌙💤",
-                "When she laughs at my silly jokes 😂💕",
-                "Her focused concentration face 🤔📚"
+                "Morning sunshine smile",
+                "Sparkling eyes of joy",
+                "Gentle sleepy whispers",
+                "Infectious laughter",
+                "Focused concentration"
             ],
             "💖 Heart Connections": [
-                "Her warm, comforting embraces 🤗💝",
-                "Our deep midnight conversations 🌌💬",
-                "Her sweet 'thinking of you' messages 📱💭",
-                "The way she truly listens 👂❤️",
-                "Her boundless empathy and care 💙🤲"
+                "Warm embraces",
+                "Deep conversations",
+                "Thoughtful messages",
+                "Active listening",
+                "Endless empathy"
             ],
             "🌈 Shared Adventures": [
-                "Our secret inside jokes 😄🤫",
-                "Dancing together in the kitchen 💃🕺",
-                "Quiet moments of pure togetherness 🕯️👫",
-                "Planning dreams and adventures 🗺️✈️",
-                "Cheering each other's victories 🌟🎉"
+                "Inside jokes",
+                "Kitchen dancing",
+                "Quiet togetherness",
+                "Dream planning",
+                "Victory celebrations"
             ],
             "🎨 Creative Souls": [
-                "Her artistic expressions 🎨🖌️",
-                "The songs that remind me of her 🎵💕",
-                "Her unique perspective on life 🔍🌍",
-                "The way she sees beauty everywhere 🌸👁️",
-                "Her inspiring creativity 💡✨"
+                "Artistic expressions",
+                "Musical memories",
+                "Unique perspectives",
+                "Beauty appreciation",
+                "Creative inspiration"
+            ],
+            "🌟 Daily Wonders": [
+                "Morning coffee ritual",
+                "Evening cuddles",
+                "Silly text messages",
+                "Surprise gestures",
+                "Peaceful silences"
             ]
         }
         
         self.hidden_emotions = [
-            "Pure Bliss 🌈✨",
-            "Serene Peace ☮️🕊️",
-            "Dancing Butterflies 🦋💃",
-            "Overflowing Gratitude 🙏💖",
-            "Electric Inspiration ⚡🌟",
-            "Childlike Wonder 😍🎈",
-            "Warm Comfort 🛋️☕",
-            "Joyful Excitement 🎉🎊",
-            "Deep Contentment 😌💆",
-            "Gentle Tenderness 🤱💕"
+            "Pure Bliss",
+            "Serene Peace",
+            "Dancing Joy",
+            "Overwhelming Gratitude",
+            "Electric Inspiration",
+            "Childlike Wonder",
+            "Warm Comfort",
+            "Excited Anticipation",
+            "Deep Contentment",
+            "Gentle Tenderness"
         ]
         
         self.love_expressions = [
-            "My heart beats only for you 💓👑",
-            "You are my universe and beyond 🌌♾️",
-            "In your love, I found my home 🏠💖"
+            "Heart beats only for you",
+            "You are my universe",
+            "In your love, I found home"
         ]
         
         self.wholesome_messages = [
             {
                 "title": "The Science of Love",
-                "message": "Did you know that when you look at someone you love, your pupils dilate and your heart synchronizes with theirs? Love truly is the most beautiful neural network! 🧠💕"
+                "message": "When you look at someone you love, your pupils dilate and your heart synchronizes with theirs. Love truly is the most beautiful neural network! 🧠💕"
             },
             {
                 "title": "Love's Magic",
-                "message": "Every time she smiles, approximately 17 muscles work together to create that perfect expression that lights up your entire world. Magic exists, and it lives in her smile! ✨😊"
+                "message": "Every smile uses 17 muscles working together to create that perfect expression that lights up your entire world. Magic exists in every smile! ✨😊"
             },
             {
                 "title": "Neural Harmony",
-                "message": "Love doesn't just exist in the heart - it creates beautiful patterns across your entire brain, lighting up regions responsible for joy, attachment, and pure bliss! 🌟🧠"
+                "message": "Love creates beautiful patterns across your entire brain, lighting up regions responsible for joy, attachment, and pure bliss! 🌟🧠"
             },
             {
                 "title": "Infinite Connection",
-                "message": "The neural pathways of love grow stronger with every shared moment, every laugh, every gentle touch. Your love is literally rewiring your brain for happiness! 💫💖"
+                "message": "Neural pathways of love grow stronger with every shared moment, laugh, and gentle touch. Your love literally rewires your brain for happiness! 💫💖"
             },
             {
                 "title": "Beautiful Chemistry",
-                "message": "When you think of her, your brain releases a cocktail of dopamine, oxytocin, and serotonin - nature's own love potion that makes everything more beautiful! 🧪✨"
+                "message": "Thinking of someone special releases dopamine, oxytocin, and serotonin - nature's own love potion that makes everything more beautiful! 🧪✨"
             }
         ]
 
@@ -454,54 +465,105 @@ def get_network_data():
 
 network_data = get_network_data()
 
+# --- Session State ---
+if 'current_theme' not in st.session_state:
+    st.session_state.current_theme = "🌸 Cherry Blossom Dreams"
+if 'animation_playing' not in st.session_state:
+    st.session_state.animation_playing = False
+if 'network_complexity' not in st.session_state:
+    st.session_state.network_complexity = 1.0
+
 # --- Magical Header ---
 st.markdown('<h1 class="magical-title">Neural Net of Affection</h1>', unsafe_allow_html=True)
-st.markdown('<p class="enchanting-subtitle">✨ Mapping the ethereal pathways from her soul to yours 💫</p>', unsafe_allow_html=True)
+st.markdown('<p class="enchanting-subtitle">✨ Mapping the ethereal pathways from heart to soul 💫</p>', unsafe_allow_html=True)
 
 # --- Enhanced Sidebar ---
 with st.sidebar:
-    st.markdown("### 🎛️ Love Control Center")
+    st.markdown("# 🎛️ Love Control Center")
     
+    # Theme Selection Panel
     st.markdown('<div class="control-panel">', unsafe_allow_html=True)
+    st.markdown("### 🎨 Choose Your Love Theme")
     
-    # Category selection with beautiful emojis
+    # Custom theme selector with previews
+    for theme_name, theme_data in network_data.themes.items():
+        col1, col2 = st.columns([1, 4])
+        with col1:
+            st.markdown(f'<div class="theme-color-dot" style="background: {theme_data["dot_color"]}"></div>', unsafe_allow_html=True)
+        with col2:
+            if st.button(theme_name, key=f"theme_{theme_name}"):
+                st.session_state.current_theme = theme_name
+        
+        if st.session_state.current_theme == theme_name:
+            st.markdown(f"*{theme_data['description']}*")
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Network Configuration Panel
+    st.markdown('<div class="control-panel">', unsafe_allow_html=True)
+    st.markdown("### 🌟 Network Settings")
+    
+    # Category selection
     selected_category = st.selectbox(
-        "🌟 Choose Your Love Story:",
+        "💝 Choose Your Love Story:",
         list(network_data.input_categories.keys()),
         help="Select the type of beautiful moments that make your heart flutter"
     )
     
-    # Animation speed with poetic description
+    # Animation controls
+    st.markdown("#### 🎬 Animation Controls")
     animation_speed = st.slider(
-        "💫 Animation Flow (like time when I'm with her):",
+        "⏱️ Animation Speed:",
         min_value=300,
         max_value=2000,
         value=800,
         step=100,
-        help="Slower = More time to savor each beautiful moment"
+        help="Control the flow of love through the network"
     )
     
-    # Color theme selection
-    color_theme = st.selectbox(
-        "🎨 Emotional Palette:",
-        ["Dreamy Pink", "Mystical Purple", "Serene Blue", "Joyful Rainbow", "Sunset Romance"],
-        help="Choose the colors that match your heart's mood"
+    # Network complexity
+    network_complexity = st.slider(
+        "🧠 Network Complexity:",
+        min_value=0.5,
+        max_value=2.0,
+        value=st.session_state.network_complexity,
+        step=0.1,
+        help="Adjust the intricacy of emotional connections"
     )
+    st.session_state.network_complexity = network_complexity
     
-    # Network intensity
+    # Love intensity
     intensity = st.slider(
         "💕 Love Intensity:",
         min_value=0.3,
         max_value=2.5,
         value=1.2,
         step=0.1,
-        help="How deeply does your heart feel? Turn up the magic!"
+        help="How deeply does your heart feel?"
     )
     
-    # Special wholesome button
-    if st.button("💝 Send Love Energy"):
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Interactive Controls Panel
+    st.markdown('<div class="control-panel">', unsafe_allow_html=True)
+    st.markdown("### 🎮 Interactive Controls")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("🌟 Animate", key="animate_btn"):
+            st.session_state.animation_playing = True
+            st.balloons()
+    
+    with col2:
+        if st.button("⏸️ Pause", key="pause_btn"):
+            st.session_state.animation_playing = False
+    
+    if st.button("💝 Send Love Energy", key="love_energy"):
         st.balloons()
         st.success("💖 Love energy sent through the neural network! 💖")
+    
+    if st.button("🔄 Reset Network", key="reset_btn"):
+        st.rerun()
     
     st.markdown('</div>', unsafe_allow_html=True)
     
@@ -514,403 +576,160 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-# --- Enhanced Color Schemes ---
-def get_color_scheme(theme, intensity_factor):
-    themes = {
-        "Dreamy Pink": {
-            "input": f"rgba(255, 182, 193, {0.9 * intensity_factor})",
-            "hidden": f"rgba(255, 105, 180, {1.0 * intensity_factor})",
-            "output": f"rgba(255, 20, 147, {1.2 * intensity_factor})",
-            "edges": f"rgba(255, 240, 245, {0.7 * intensity_factor})",
-            "glow": "rgba(255, 105, 180, 0.3)"
-        },
-        "Mystical Purple": {
-            "input": f"rgba(221, 160, 221, {0.9 * intensity_factor})",
-            "hidden": f"rgba(147, 112, 219, {1.0 * intensity_factor})",
-            "output": f"rgba(138, 43, 226, {1.2 * intensity_factor})",
-            "edges": f"rgba(230, 230, 250, {0.7 * intensity_factor})",
-            "glow": "rgba(147, 112, 219, 0.3)"
-        },
-        "Serene Blue": {
-            "input": f"rgba(173, 216, 230, {0.9 * intensity_factor})",
-            "hidden": f"rgba(100, 149, 237, {1.0 * intensity_factor})",
-            "output": f"rgba(65, 105, 225, {1.2 * intensity_factor})",
-            "edges": f"rgba(240, 248, 255, {0.7 * intensity_factor})",
-            "glow": "rgba(100, 149, 237, 0.3)"
-        },
-        "Joyful Rainbow": {
-            "input": f"rgba(255, 99, 132, {0.9 * intensity_factor})",
-            "hidden": f"rgba(54, 162, 235, {1.0 * intensity_factor})",
-            "output": f"rgba(255, 206, 86, {1.2 * intensity_factor})",
-            "edges": f"rgba(255, 255, 255, {0.7 * intensity_factor})",
-            "glow": "rgba(255, 99, 132, 0.3)"
-        },
-        "Sunset Romance": {
-            "input": f"rgba(255, 154, 158, {0.9 * intensity_factor})",
-            "hidden": f"rgba(250, 208, 196, {1.0 * intensity_factor})",
-            "output": f"rgba(255, 206, 84, {1.2 * intensity_factor})",
-            "edges": f"rgba(255, 183, 197, {0.7 * intensity_factor})",
-            "glow": "rgba(255, 154, 158, 0.3)"
-        }
-    }
-    return themes[theme]
-
-# --- Breathtaking Figure Creation ---
+# --- Enhanced Figure Creation ---
 @st.cache_data
-def create_magical_network(inputs, hidden, output, colors, speed, intensity_val):
-    # Calculate elegant positions
+def create_enhanced_network(inputs, hidden, output, theme, speed, intensity_val, complexity):
+    # Get theme colors
+    theme_data = network_data.themes[theme]
+    
+    # Calculate positions with improved readability
     input_count = len(inputs)
     hidden_count = len(hidden)
     output_count = len(output)
     
-    # Create flowing, organic positions
-    x_in = [-1.2] * input_count
-    y_in = np.linspace(0.05, 0.95, input_count)
+    # More readable positioning
+    x_in = [-2.0] * input_count
+    y_in = np.linspace(0.1, 0.9, input_count)
     
-    # Create a more organic hidden layer arrangement
-    x_hid = [0.5] * hidden_count
-    y_hid = np.linspace(0.02, 0.98, hidden_count)
+    x_hid = [0.0] * hidden_count
+    y_hid = np.linspace(0.05, 0.95, hidden_count)
     
-    x_out = [2.2] * output_count
-    y_out = np.linspace(0.35, 0.65, output_count)
+    x_out = [2.0] * output_count
+    y_out = np.linspace(0.3, 0.7, output_count)
 
     fig = go.Figure()
     
-    # Add magical background elements
-    for i in range(10):
+    # Add subtle background effects
+    for i in range(int(5 * complexity)):
         fig.add_shape(
             type="circle",
-            x0=random.uniform(-2, 3), y0=random.uniform(0, 1),
-            x1=random.uniform(-2, 3), y1=random.uniform(0, 1),
-            fillcolor=colors["glow"],
+            x0=random.uniform(-2.5, 2.5), y0=random.uniform(0, 1),
+            x1=random.uniform(-2.5, 2.5), y1=random.uniform(0, 1),
+            fillcolor=theme_data["glow"],
             line=dict(color="rgba(0,0,0,0)", width=0),
-            opacity=0.1
+            opacity=0.05
         )
     
-    # Create beautiful flowing connections
-    connection_strengths = []
-    
-    # Input to hidden connections with varying beauty
+    # Create enhanced connections with better visibility
     for i, (xi, yi) in enumerate(zip(x_in, y_in)):
         for j, (xh, yh) in enumerate(zip(x_hid, y_hid)):
-            # Create connection strength based on emotional resonance
-            strength = np.random.uniform(0.3, 1.5) * intensity_val
-            connection_strengths.append(strength)
+            strength = np.random.uniform(0.4, 1.2) * intensity_val * complexity
             
-            # Create flowing bezier-like curves
-            mid_x = (xi + xh) / 2 + np.random.uniform(-0.1, 0.1)
-            mid_y = (yi + yh) / 2 + np.random.uniform(-0.05, 0.05)
-            
-            # Determine line style based on strength
-            line_dash = "solid" if strength > 0.8 else "dot"
-            
+            # Improved connection visualization
             fig.add_shape(
                 type="line",
-                x0=xi + 0.15, y0=yi, x1=xh - 0.15, y1=yh,
+                x0=xi + 0.2, y0=yi, x1=xh - 0.15, y1=yh,
                 line=dict(
-                    color=colors["edges"],
-                    width=strength * 2,
-                    dash=line_dash
+                    color=theme_data["edge_color"],
+                    width=max(1, strength * 2.5),
+                    dash="solid" if strength > 0.8 else "dot"
                 ),
-                opacity=min(strength, 1.0)
+                opacity=min(strength * 0.8, 0.9)
             )
     
-    # Hidden to output connections (stronger and more magical)
+    # Hidden to output connections
     for xh, yh in zip(x_hid, y_hid):
         for xo, yo in zip(x_out, y_out):
-            strength = np.random.uniform(1.0, 2.0) * intensity_val
+            strength = np.random.uniform(0.8, 1.8) * intensity_val * complexity
             fig.add_shape(
                 type="line",
-                x0=xh + 0.15, y0=yh, x1=xo - 0.15, y1=yo,
+                x0=xh + 0.15, y0=yh, x1=xo - 0.2, y1=yo,
                 line=dict(
-                    color=colors["edges"],
-                    width=strength * 1.5,
+                    color=theme_data["edge_color"],
+                    width=max(2, strength * 2),
                     dash="solid"
                 ),
-                opacity=min(strength * 0.8, 1.0)
+                opacity=min(strength * 0.7, 0.9)
             )
     
-    # Create stunning node visualizations
-    base_input_size = 20
-    base_hidden_size = 25
-    base_output_size = 35
+    # Enhanced node visualizations with better text readability
+    base_input_size = 25
+    base_hidden_size = 30
+    base_output_size = 40
     
-    # Input layer - delicate and beautiful
+    # Input layer - more readable
     fig.add_trace(go.Scatter(
         x=x_in, y=y_in,
         mode="markers+text",
         marker=dict(
-            size=[base_input_size + i*2 for i in range(input_count)],
-            color=colors["input"],
+            size=[base_input_size + i*3 for i in range(input_count)],
+            color=theme_data["input_color"],
             line=dict(color="white", width=3),
             symbol="circle",
-            opacity=0.9
+            opacity=0.95
         ),
         text=inputs,
         textposition="middle right",
         textfont=dict(
             color="white",
-            size=11,
-            family="Inter, sans-serif",
-            shadow="2px 2px 4px rgba(0,0,0,0.3)"
+            size=13,
+            family="Inter, sans-serif"
         ),
         name="✨ Beautiful Inputs",
         hovertemplate="<b>%{text}</b><br>💕 Input Layer<br>Where magic begins<extra></extra>",
-        hoverlabel=dict(bgcolor="rgba(255, 105, 180, 0.8)", font_color="white")
+        hoverlabel=dict(bgcolor=theme_data["input_color"], font_color="white")
     ))
     
-    # Hidden layer - mystical and emotional
+    # Hidden layer - enhanced visibility
     fig.add_trace(go.Scatter(
         x=x_hid, y=y_hid,
         mode="markers+text",
         marker=dict(
-            size=[base_hidden_size + i*1.5 for i in range(hidden_count)],
-            color=colors["hidden"],
+            size=[base_hidden_size + i*2 for i in range(hidden_count)],
+            color=theme_data["hidden_color"],
             line=dict(color="white", width=3),
             symbol="diamond",
-            opacity=0.9
+            opacity=0.95
         ),
         text=hidden,
-        textposition="middle right",
+        textposition="top center",
         textfont=dict(
             color="white",
             size=12,
-            family="Inter, sans-serif",
-            shadow="2px 2px 4px rgba(0,0,0,0.3)"
+            family="Inter, sans-serif"
         ),
         name="💫 Emotional Processing",
         hovertemplate="<b>%{text}</b><br>🌟 Hidden Layer<br>Where feelings transform<extra></extra>",
-        hoverlabel=dict(bgcolor="rgba(147, 112, 219, 0.8)", font_color="white")
+        hoverlabel=dict(bgcolor=theme_data["hidden_color"], font_color="white")
     ))
     
-    # Output layer - radiant and powerful
+    # Output layer - most prominent
     fig.add_trace(go.Scatter(
         x=x_out, y=y_out,
         mode="markers+text",
         marker=dict(
-            size=[base_output_size + i*5 for i in range(output_count)],
-            color=colors["output"],
+            size=[base_output_size + i*8 for i in range(output_count)],
+            color=theme_data["output_color"],
             line=dict(color="gold", width=4),
             symbol="star",
             opacity=1.0
         ),
         text=output,
-        textposition="middle right",
+        textposition="middle left",
         textfont=dict(
             color="white",
-            size=14,
+            size=15,
             family="Inter, sans-serif",
-            shadow="3px 3px 6px rgba(0,0,0,0.4)"
+            shadow="2px 2px 4px rgba(0,0,0,0.5)"
         ),
         name="💖 Pure Love",
         hovertemplate="<b>%{text}</b><br>👑 Output Layer<br>The ultimate expression<extra></extra>",
-        hoverlabel=dict(bgcolor="rgba(255, 20, 147, 0.8)", font_color="white")
+        hoverlabel=dict(bgcolor=theme_data["output_color"], font_color="white")
     ))
     
-    # Create mesmerizing animation frames
-    frames = []
-    
-    # Frame 1: Gentle input awakening
-    frames.append(go.Frame(
-        name="gentle_awakening",
-        data=[
-            go.Scatter(
-                x=x_in, y=y_in, mode="markers+text",
-                marker=dict(
-                    size=[s*1.8 for s in [base_input_size + i*2 for i in range(input_count)]], 
-                    color=colors["output"],
-                    line=dict(color="gold", width=4),
-                    opacity=1.0
-                ),
-                text=inputs, textposition="middle right",
-                textfont=dict(color="white", size=12, family="Inter, sans-serif"),
-                name="✨ Awakening Inputs"
-            ),
-            go.Scatter(
-                x=x_hid, y=y_hid, mode="markers+text",
-                marker=dict(
-                    size=[base_hidden_size + i*1.5 for i in range(hidden_count)], 
-                    color=colors["hidden"],
-                    opacity=0.6
-                ),
-                text=hidden, textposition="middle right",
-                textfont=dict(color="white", size=12, family="Inter, sans-serif"),
-                name="💫 Sleeping Emotions"
-            ),
-            go.Scatter(
-                x=x_out, y=y_out, mode="markers+text",
-                marker=dict(
-                    size=[base_output_size + i*5 for i in range(output_count)], 
-                    color=colors["output"],
-                    opacity=0.4
-                ),
-                text=output, textposition="middle right",
-                textfont=dict(color="white", size=14, family="Inter, sans-serif"),
-                name="💖 Dormant Love"
-            )
-        ]
-    ))
-    
-    # Frame 2: Emotional symphony
-    frames.append(go.Frame(
-        name="emotional_symphony",
-        data=[
-            go.Scatter(
-                x=x_in, y=y_in, mode="markers+text",
-                marker=dict(
-                    size=[base_input_size + i*2 for i in range(input_count)], 
-                    color=colors["input"],
-                    opacity=0.8
-                ),
-                text=inputs, textposition="middle right",
-                textfont=dict(color="white", size=11, family="Inter, sans-serif"),
-                name="✨ Gentle Inputs"
-            ),
-            go.Scatter(
-                x=x_hid, y=y_hid, mode="markers+text",
-                marker=dict(
-                    size=[s*2.2 for s in [base_hidden_size + i*1.5 for i in range(hidden_count)]], 
-                    color=colors["output"],
-                    line=dict(color="gold", width=4),
-                    opacity=1.0
-                ),
-                text=hidden, textposition="middle right",
-                textfont=dict(color="white", size=13, family="Inter, sans-serif"),
-                name="💫 Dancing Emotions"
-            ),
-            go.Scatter(
-                x=x_out, y=y_out, mode="markers+text",
-                marker=dict(
-                    size=[base_output_size + i*5 for i in range(output_count)], 
-                    color=colors["output"],
-                    opacity=0.7
-                ),
-                text=output, textposition="middle right",
-                textfont=dict(color="white", size=14, family="Inter, sans-serif"),
-                name="💖 Growing Love"
-            )
-        ]
-    ))
-    
-    # Frame 3: Love's magnificent explosion
-    frames.append(go.Frame(
-        name="loves_explosion",
-        data=[
-            go.Scatter(
-                x=x_in, y=y_in, mode="markers+text",
-                marker=dict(
-                    size=[base_input_size + i*2 for i in range(input_count)], 
-                    color=colors["input"],
-                    opacity=0.7
-                ),
-                text=inputs, textposition="middle right",
-                textfont=dict(color="white", size=11, family="Inter, sans-serif"),
-                name="✨ Cherished Inputs"
-            ),
-            go.Scatter(
-                x=x_hid, y=y_hid, mode="markers+text",
-                marker=dict(
-                    size=[base_hidden_size + i*1.5 for i in range(hidden_count)], 
-                    color=colors["hidden"],
-                    opacity=0.8
-                ),
-                text=hidden, textposition="middle right",
-                textfont=dict(color="white", size=12, family="Inter, sans-serif"),
-                name="💫 Harmonious Emotions"
-            ),
-            go.Scatter(
-                x=x_out, y=y_out, mode="markers+text",
-                marker=dict(
-                    size=[s*2.8 for s in [base_output_size + i*5 for i in range(output_count)]], 
-                    color="rgba(255, 215, 0, 1.0)",
-                    line=dict(color="white", width=5),
-                    opacity=1.0
-                ),
-                text=output, textposition="middle right",
-                textfont=dict(color="white", size=16, family="Inter, sans-serif"),
-                name="💖 Radiant Love"
-            )
-        ]
-    ))
-    
-    fig.frames = frames
-    
-    # Magical controls with beautiful styling
-    fig.update_layout(
-        updatemenus=[{
-            "type": "buttons",
-            "showactive": False,
-            "x": 0.02,
-            "y": 1.08,
-            "bgcolor": "rgba(255, 105, 180, 0.1)",
-            "bordercolor": "rgba(255, 105, 180, 0.3)",
-            "borderwidth": 2,
-            "buttons": [
-                {
-                    "label": "🌟 Awaken the Network",
-                    "method": "animate",
-                    "args": [None, {
-                        "frame": {"duration": speed, "redraw": True},
-                        "fromcurrent": True,
-                        "transition": {"duration": speed//3, "easing": "cubic-in-out"}
-                    }]
-                },
-                {
-                    "label": "⏸️ Pause Magic",
-                    "method": "animate",
-                    "args": [[None], {"frame": {"duration": 0, "redraw": False}, "mode": "immediate"}]
-                },
-                {
-                    "label": "🔄 Reset Hearts",
-                    "method": "restyle",
-                    "args": [{"visible": [True, True, True]}]
-                }
-            ]
-        }],
-        sliders=[{
-            "active": 0,
-            "yanchor": "top",
-            "xanchor": "left",
-            "currentvalue": {
-                "font": {"size": 14, "color": "white", "family": "Inter"},
-                "prefix": "✨ Stage: ",
-                "visible": True,
-                "xanchor": "right"
-            },
-            "bgcolor": "rgba(255, 105, 180, 0.1)",
-            "bordercolor": "rgba(255, 105, 180, 0.3)",
-            "borderwidth": 2,
-            "pad": {"b": 15, "t": 60},
-            "len": 0.9,
-            "x": 0.05,
-            "y": 0,
-            "steps": [
-                {
-                    "args": [[f.name], {
-                        "frame": {"duration": speed, "redraw": True},
-                        "mode": "immediate",
-                        "transition": {"duration": speed//3, "easing": "cubic-in-out"}
-                    }],
-                    "label": f.name.replace("_", " ").title(),
-                    "method": "animate"
-                } for f in frames
-            ]
-        }]
-    )
-    
-    # Breathtaking layout design
+    # Enhanced layout with better readability
     fig.update_layout(
         title={
-            "text": f"💫 {selected_category} → Neural Symphony of Love 💫",
+            "text": f"💫 {selected_category} → {theme} Neural Symphony 💫",
             "x": 0.5,
-            "font": {"size": 18, "color": "white", "family": "Inter"},
+            "font": {"size": 20, "color": "white", "family": "Inter"},
             "pad": {"t": 20}
         },
         showlegend=True,
         legend=dict(
             x=0.02, y=0.98,
-            bgcolor="rgba(0,0,0,0.7)",
-            bordercolor="rgba(255,182,193,0.5)",
+            bgcolor="rgba(0,0,0,0.8)",
+            bordercolor=theme_data["edge_color"],
             borderwidth=2,
             font=dict(color="white", family="Inter", size=12)
         ),
@@ -919,142 +738,191 @@ def create_magical_network(inputs, hidden, output, colors, speed, intensity_val)
         font=dict(color="white", family="Inter"),
         xaxis=dict(
             showgrid=False, zeroline=False, showticklabels=False,
-            range=[-2, 3.5], fixedrange=True
+            range=[-3, 3], fixedrange=True
         ),
         yaxis=dict(
             showgrid=False, zeroline=False, showticklabels=False,
-            range=[-0.05, 1.05], fixedrange=True
+            range=[-0.1, 1.1], fixedrange=True
         ),
-        margin=dict(l=20, r=20, t=100, b=80),
-        height=700,
+        margin=dict(l=40, r=40, t=80, b=40),
+        height=650,
         hovermode="closest"
     )
     
     return fig
 
 # --- Main Content Area ---
-col1, col2 = st.columns([4, 1])
+col1, col2 = st.columns([3, 1])
 
 with col1:
     # Get current data
     current_inputs = network_data.input_categories[selected_category]
-    colors = get_color_scheme(color_theme, intensity)
     
-    # Create and display the magical network
-    fig = create_magical_network(
+    # Create and display the enhanced network
+    fig = create_enhanced_network(
         current_inputs,
         network_data.hidden_emotions,
         network_data.love_expressions,
-        colors,
+        st.session_state.current_theme,
         animation_speed,
-        intensity
+        intensity,
+        network_complexity
     )
     
-    st.plotly_chart(fig, use_container_width=True, key="magical_neural_network")
+    st.plotly_chart(fig, use_container_width=True, key="enhanced_neural_network")
 
 with col2:
     st.markdown("### 📊 Love Analytics")
     
-    # Beautiful metrics
+    # Beautiful metrics with theme colors
+    theme_data = network_data.themes[st.session_state.current_theme]
+    
     st.markdown(f"""
-    <div class="metric-card">
+    <div class="metric-card" style="border-color: {theme_data['dot_color']};">
         <h4>💝 Input Signals</h4>
         <h2>{len(network_data.input_categories[selected_category])}</h2>
     </div>
     """, unsafe_allow_html=True)
     
     st.markdown(f"""
-    <div class="metric-card">
+    <div class="metric-card" style="border-color: {theme_data['dot_color']};">
         <h4>🌟 Emotions</h4>
         <h2>{len(network_data.hidden_emotions)}</h2>
     </div>
     """, unsafe_allow_html=True)
     
     st.markdown(f"""
-    <div class="metric-card">
+    <div class="metric-card" style="border-color: {theme_data['dot_color']};">
         <h4>💖 Love Output</h4>
         <h2>{len(network_data.love_expressions)}</h2>
     </div>
     """, unsafe_allow_html=True)
     
-    # Magical love wisdom button
-    if st.button("🔮 Love Wisdom"):
-        wisdom = random.choice([
+    # Network status
+    st.markdown("### 💫 Network Status")
+    
+    # Love intensity progress
+    emotional_intensity = min(100, int(intensity * 40))
+    st.progress(emotional_intensity / 100, text=f"💕 Love Intensity: {emotional_intensity}%")
+    
+    # Complexity indicator
+    complexity_percent = min(100, int(network_complexity * 50))
+    st.progress(complexity_percent / 100, text=f"🧠 Neural Complexity: {complexity_percent}%")
+    
+    # Theme indicator
+    st.markdown(f"""
+    <div style="text-align: center; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 10px; margin: 1rem 0;">
+        <div style="width: 30px; height: 30px; background: {theme_data['dot_color']}; border-radius: 50%; margin: 0 auto 10px; border: 2px solid white;"></div>
+        <strong>Current Theme</strong><br>
+        <em>{st.session_state.current_theme}</em>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Interactive love wisdom
+    if st.button("🔮 Generate Love Wisdom", key="wisdom_btn"):
+        wisdom_messages = [
             "Love is the only force capable of transforming an enemy into a friend 💫",
             "In your light, I learn how to love 🌟",
             "Love is not just looking at each other, it's looking in the same direction 👫",
             "The best thing to hold onto in life is each other 🤗",
             "Love is a friendship set to music 🎵",
             "Where there is love, there is life 🌱",
-            "Love is the bridge between two hearts 🌉"
-        ])
-        st.info(f"✨ {wisdom}")
-    
-    # Current emotional state
-    st.markdown("### 💫 Current Flow")
-    emotional_intensity = min(100, int(intensity * 50))
-    st.progress(emotional_intensity / 100)
-    st.caption(f"💕 Love intensity: {emotional_intensity}%")
+            "Love is the bridge between two hearts 🌉",
+            "True love stories never have endings 📖💕",
+            "Love recognizes no barriers 🚫❤️",
+            "In all the world, there is no heart for me like yours 💝"
+        ]
+        st.info(f"✨ {random.choice(wisdom_messages)}")
 
-# --- Wholesome Information Sections ---
+# --- Enhanced Information Sections ---
 st.markdown("---")
 
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 
 with col1:
+    st.markdown("### 🎯 How This Network Works")
     st.markdown("""
     <div class="info-section">
-        <h3>🎯 How Your Heart Works</h3>
-        <p>Every beautiful moment with her creates neural pathways that strengthen over time. This network visualizes how her smallest gestures cascade through your emotional processing center, ultimately expressing as pure, infinite love.</p>
+        <h3>💡 Input Layer (Left)</h3>
+        <p>Beautiful moments and experiences flow into the network. Each input represents a special memory, gesture, or feeling that sparks joy in your heart.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div class="info-section">
+        <h3>🧠 Hidden Layer (Center)</h3>
+        <p>Your emotional processing center where different feelings combine, amplify, and transform. This is where the magic of love happens - where simple moments become profound emotions.</p>
     </div>
     """, unsafe_allow_html=True)
 
 with col2:
+    st.markdown("### 🔬 The Science of Love")
     st.markdown("""
     <div class="info-section">
-        <h3>🔬 The Science of Magic</h3>
-        <p>When you see her smile, your brain releases a symphony of happy chemicals. The hidden layer represents how different emotions combine and amplify, creating something far more beautiful than the sum of its parts.</p>
+        <h3>💖 Output Layer (Right)</h3>
+        <p>The ultimate expression of your love - pure, concentrated, and infinitely beautiful. This is where all the neural pathways converge to create something greater than the sum of its parts.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div class="info-section">
+        <h3>🌈 Connection Strength</h3>
+        <p>The thickness and opacity of connections represent the strength of emotional bonds. Stronger connections (thicker lines) indicate more powerful pathways of affection.</p>
     </div>
     """, unsafe_allow_html=True)
 
-with col3:
-    st.markdown("""
-    <div class="info-section">
-        <h3>💡 Love's Algorithm</h3>
-        <p>This isn't just a network - it's a love algorithm that gets stronger with every shared laugh, every gentle touch, every moment of understanding. Your love literally rewires itself to become more beautiful each day.</p>
-    </div>
-    """, unsafe_allow_html=True)
+# --- Interactive Message Center ---
+st.markdown("### 💌 Interactive Love Messages")
 
-# --- Dynamic Wholesome Messages ---
-st.markdown("### 💌 Heartwarming Neural Messages")
+message_col1, message_col2, message_col3 = st.columns(3)
 
-message_cols = st.columns(2)
-with message_cols[0]:
-    if st.button("💝 Generate Love Message", key="love_msg"):
-        messages = [
-            "Every neuron in this network fires with the rhythm of your heartbeat when you think of her 💓",
-            "The most beautiful algorithm ever written is the one that calculates how much you love her: INFINITY 💫",
-            "Your brain doesn't just process her smile - it celebrates it with a festival of joy across every neural pathway 🎉",
-            "Love isn't just an emotion in this network - it's the very architecture that connects every beautiful thought of her ✨",
-            "When she laughs, it doesn't just activate your happiness centers - it creates new ones, dedicated entirely to that perfect sound 🎵"
-        ]
-        st.success(random.choice(messages))
-
-with message_cols[1]:
-    if st.button("🌟 Neural Love Fact", key="love_fact"):
+with message_col1:
+    if st.button("💝 Neural Love Fact", key="neural_fact"):
         facts = [
-            "Did you know? Your pupils dilate by up to 45% when you look at someone you love - it's your brain's way of trying to take in more of their beauty! 👁️✨",
-            "Love activates the same reward pathways as chocolate, but with 1000x more intensity and zero calories! 🍫💕",
+            "Your pupils dilate by up to 45% when you look at someone you love - your brain wants to take in more of their beauty! 👁️✨",
+            "Love activates the same reward pathways as chocolate, but with 1000x more intensity! 🍫💕",
             "When couples hold hands, their heartbeats synchronize within 3 minutes - true neural harmony! 👫💓",
-            "Your brain creates a unique 'love map' for her that's more detailed than any GPS navigation system 🗺️💖",
-            "Love literally grows your brain - the areas responsible for empathy and compassion physically expand when you're in love! 🧠💕"
+            "Your brain creates a unique 'love map' more detailed than any GPS! 🗺️💖",
+            "Love literally grows your brain - empathy areas physically expand when you're in love! 🧠💕"
         ]
-        st.info(random.choice(facts))
+        st.success(random.choice(facts))
+
+with message_col2:
+    if st.button("🌟 Wholesome Quote", key="wholesome_quote"):
+        quotes = [
+            "Love is composed of a single soul inhabiting two bodies 💫",
+            "The best love is the kind that awakens the soul 🌅",
+            "Love is not finding someone to live with, it's finding someone you can't live without 💝",
+            "In your smile, I see something more beautiful than the stars ⭐",
+            "Love is the master key that opens the gates of happiness 🗝️"
+        ]
+        st.info(random.choice(quotes))
+
+with message_col3:
+    if st.button("🎨 Theme Inspiration", key="theme_inspiration"):
+        current_theme_data = network_data.themes[st.session_state.current_theme]
+        inspirations = {
+            "🌸 Cherry Blossom Dreams": "Like delicate petals dancing in spring breeze, your love brings gentle beauty to every moment 🌸",
+            "🌙 Moonlit Romance": "Under silver moonbeams, your love illuminates the darkest nights with ethereal grace 🌙",
+            "🌊 Ocean Serenity": "Deep as ocean tides, your love flows with endless serenity and peaceful strength 🌊",
+            "🌈 Rainbow Hearts": "Vibrant as a rainbow after rain, your love paints the world in brilliant colors 🌈",
+            "🌅 Golden Sunrise": "Warm as morning light, your love brings the promise of beautiful new beginnings 🌅",
+            "💎 Crystal Clarity": "Pure as crystal light, your love shines with perfect clarity and timeless beauty 💎"
+        }
+        st.success(inspirations.get(st.session_state.current_theme, "Your love theme radiates pure magic! ✨"))
 
 # --- Beautiful Footer ---
-st.markdown("""
-<div class="magical-footer">
-    <em>"In the vast neural network of existence, love is the most beautiful algorithm - 
-    one that transforms simple inputs into infinite joy, and makes every synapse sing with the melody of two hearts becoming one 💕✨"</em>
+st.markdown("---")
+st.markdown(f"""
+<div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(255, 105, 180, 0.1) 0%, rgba(199, 21, 133, 0.1) 100%); border-radius: 25px; border: 1px solid rgba(255, 105, 180, 0.2); backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(255, 105, 180, 0.1);">
+    <em style="color: #ffb6c1; font-size: 1.3rem; font-weight: 400; text-shadow: 0 0 15px rgba(255, 182, 193, 0.4); display: block; animation: gentleGlow 3s ease-in-out infinite alternate;">
+        "In the vast neural network of existence, love is the most beautiful algorithm - 
+        one that transforms simple inputs into infinite joy, and makes every synapse sing with the melody of two hearts becoming one 💕✨"
+    </em>
+    <br><br>
+    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 1rem;">
+        <div style="width: 20px; height: 20px; background: {network_data.themes[st.session_state.current_theme]['dot_color']}; border-radius: 50%; border: 2px solid white; animation: gentlePulse 2s ease-in-out infinite;"></div>
+        <span style="color: #ff69b4;">Current Theme: {st.session_state.current_theme}</span>
+    </div>
 </div>
 """, unsafe_allow_html=True)
