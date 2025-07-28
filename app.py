@@ -7,11 +7,15 @@ hidden layers for your feelings, and an output declaring "I'm in love with you".
 """
 
 import streamlit as st
-import plotly.graph_objects as go
+# Ensure Plotly is available
+try:
+    import plotly.graph_objects as go
+except ImportError:
+    st.error("Plotly is not installed. Please install it by running `pip install plotly` in your environment.")
+    st.stop()
 import numpy as np
 
 # --- Page Configuration ---
-# Must be called before any other Streamlit commands
 st.set_page_config(
     page_title="Neural Net of Affection 🌸🧠💖",
     layout="wide"
